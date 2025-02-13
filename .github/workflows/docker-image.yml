@@ -35,13 +35,15 @@ jobs:
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          docker build -t olivaresiago/docker-graphql:0.0.2 .
+          docker build -t olivaresiago/docker-graphql:$NEW_VERSION .
+          docker build -t olivaresiago/docker-graphql .
 
       - name: Push Docker Image
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          docker push olivaresiago/docker-graphql:0.0.2 .
+          docker push olivaresiago/docker-graphql:$NEW_VERSION
+          docker push olivaresiago/docker-graphql
 
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
